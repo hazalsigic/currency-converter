@@ -1,0 +1,14 @@
+<label class="field">
+  <span class="field__label">{{ label() }}</span>
+  <select
+    class="field__control"
+    (change)="onChange($event)"
+    [attr.aria-label]="label()"
+  >
+    @for (currency of currencies(); track currency.code) {
+      <option [value]="currency.code" [selected]="currency.code === value().code">
+        {{ currency.code }} - {{ currency.name }}
+      </option>
+    }
+  </select>
+</label>

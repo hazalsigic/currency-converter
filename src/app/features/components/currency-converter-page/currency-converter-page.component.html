@@ -1,0 +1,82 @@
+<section class="converter" aria-labelledby="converter-title">
+  <header class="converter__header">
+    <h1 id="converter-title" class="converter__title">Currency Converter</h1>
+    <p class="converter__subtitle">
+      Convert between {{ store.currencies().length }} world currencies.
+    </p>
+  </header>
+
+  <div class="converter__card">
+    <app-amount-input
+      [value]="store.amount()"
+      label="Amount"
+      (valueChange)="onAmountChange($event)"
+    />
+
+    <div class="converter__row">
+      <app-currency-select
+        class="converter__select"
+        label="From"
+        [currencies]="store.currencies()"
+        [value]="store.source()"
+        (valueChange)="onSourceChange($event)"
+      />
+
+      <button
+        type="button"
+        class="converter__swap"
+        (click)="swap()"
+        aria-label="Swap source and target currencies"
+      >
+        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+          <path
+            d="M7 10h11l-3-3m4 7H8l3 3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <app-currency-select
+        class="converter__select"
+        label="To"
+        [currencies]="store.currencies()"
+        [value]="store.target()"
+        (valueChange)="onTargetChange($event)"
+      />
+    </div>
+
+    @if (store.isSameCurrency()) {
+      <p class="converter__hint">
+        Source and target are identical. Please pick a different currency to convert.
+      </p>
+    }
+
+    <div class="converter__output">
+      @if (store.error(); as message) {
+        <div class="converter__error" role="alert">
+          <strong>Couldn't fetch rates.</strong>
+          <span>{{ message }}</span>
+        </div>
+      } @else if (!store.result()) {
+        <div class="converter__skeleton" role="status" aria-label="Loading initial rate">
+          <span class="converter__spinner" aria-hidden="true"></span>
+          <span>Fetching latest rate…</span>
+        </div>
+      } @else {
+        <div class="converter__result-wrap" [class.is-loading]="store.loading()">
+          <app-conversion-result [result]="store.result()" />
+          @if (store.loading()) {
+            <div class="converter__loading-overlay" role="status" aria-live="polite">
+              <span class="converter__spinner" aria-hidden="true"></span>
+              <span>Updating…</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

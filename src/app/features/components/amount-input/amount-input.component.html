@@ -1,0 +1,13 @@
+<label class="field">
+  <span class="field__label">{{ label() }}</span>
+  <input
+    class="field__control"
+    type="number"
+    inputmode="decimal"
+    min="0"
+    step="0.01"
+    [value]="value()"
+    (input)="onInput($event)"
+    [attr.aria-label]="label()"
+  />
+</label>

@@ -1,0 +1,20 @@
+@if (result(); as r) {
+  <article class="result" aria-live="polite">
+    <div class="result__row">
+      <span class="result__amount"> {{ r.amount | number: '1.2-2' }} {{ r.from.code }} </span>
+      <span class="result__separator" aria-hidden="true">equals to</span>
+    </div>
+    <div class="result__main">
+      <span class="result__value">{{ r.convertedAmount | number: '1.2-4' }}</span>
+      <span class="result__currency">{{ r.to.code }}</span>
+    </div>
+    <p class="result__meta">
+      1 {{ r.from.code }} = {{ r.rate | number: '1.4-6' }} {{ r.to.code }}
+      <span class="result__sep" aria-hidden="true">·</span>
+      <span class="result__timestamp-label">
+        Rate as of
+      <time class="result__timestamp" [attr.datetime]="toIsoString(r.timestamp)"> {{ formatTimestamp(r.timestamp) }}</time>
+      </span>
+    </p>
+  </article>
+}

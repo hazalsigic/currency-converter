@@ -1,0 +1,69 @@
+:root {
+  // Surface
+  --color-bg: #fafaf8;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f4f4f1;
+  --color-border: #e6e5df;
+  --color-border-strong: #d6d4cc;
+
+  // Text
+  --color-text: #0a0e1a;
+  --color-text-secondary: #4a5160;
+  --color-text-muted: #8a8f9c;
+
+  // Accent
+  --color-accent: #14203d;
+  --color-accent-hover: #0a1428;
+  --color-accent-soft: rgba(22, 33, 58, 0.08);
+
+  // Status
+  --color-error-text: #8a1c1c;
+  --color-error-bg: #fdecec;
+  --color-info-text: #4a5160;
+  --color-info-bg: #f4f4f1;
+
+  // Type
+  --font-body:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  // Sizing
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
